@@ -50,7 +50,7 @@ class Square:
             for row in range(0, self.__size):
                 if count > 0:
                     for i in range(0, count):
-                        print("_".format(), end="")
+                        print(" ".format(), end="")
                 for col in range(0, self.__size):
                     print("#".format(), end="")
                 print()
