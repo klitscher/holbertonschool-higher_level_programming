@@ -18,6 +18,7 @@ class Square:
     @property
     def size(self):
         """int: Returns the size of the square.
+
         Checks for errors, otherwise assigne value to the field__size.
         """
         return self.__size
@@ -45,14 +46,15 @@ class Square:
                 print()
     @property
     def position(self):
-        """int: position of the square in tuple format."""
+        """int: position of the square in tuple format.
+
+        Checks if there are any bad values.
+        """
         return self.__position
 
     @position.setter
     def position(self, value):
-        if value[0] >= 0 and value[1] >= 1:
-            raise TypeError('position must be a tuple of 2 positive integers')
-        elif not isinstance(value, tuple):
+        if value[0] < 0 and value[1] < 0 and not isinstance(value, tuple):
             raise TypeError('position must be a tuple of 2 positive integers')
         elif len(value) is not 2:
             raise TypeError('position must be a tuple of 2 positive integers')
