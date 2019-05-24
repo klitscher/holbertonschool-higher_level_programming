@@ -19,4 +19,3 @@ def text_indentation(text):
         elif i + 1 == len(text):
             new = text[count:(i + 1)]
             print("{}".format(new.lstrip()), end="")
-
