@@ -51,7 +51,8 @@ class Rectangle:
 
     def __repr__(self):
         """String rep of the rectangle"""
-        return "Rectangle({}, {})".format(self.__width, self.__height)
+        return "{}({}, {})".format((type(self).__name__),
+                                   self.__width, self.__height)
 
     def __init__(self, width=0, height=0):
         """initilization for rectangle"""
