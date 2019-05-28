@@ -65,6 +65,8 @@ class Rectangle:
     def __str__(self):
         """Visual representation of square"""
         li = []
+        if self.__width == 0 or self.__height == 0:
+            return ""
         for i in range(self.__height):
             li.append(str(self.print_symbol) * self.__width)
         return '\n'.join(li)
