@@ -27,9 +27,9 @@ class Student:
         elif not isinstance(attrs, list):
             return dic
         for i in attrs:
-            if isinstance(i, str):
-                for key2, val2 in dic.items():
-                    if i == key2:
-                        dic2.update({key2: val2})
-                        break
+            if not isinstance(i, str):
+                return dic
+        for key2, val2 in dic.items():
+            if key2 in attrs:
+                dic2.update({key2: val2})
         return dic2
