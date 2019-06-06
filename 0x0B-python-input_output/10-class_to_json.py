@@ -5,4 +5,11 @@
 def class_to_json(obj):
     """Function to get dictionary description"""
 
-    return obj.__dict__
+    li = obj.__dict__
+    dic = {}
+    for key, value in li.items():
+        if isinstance(value, list) or isinstance(value, dict) or isinstance(
+                value, str) or isinstance(value, int) or isinstance(
+                    value, bool):
+            dic.update({key: value})
+    return dic
