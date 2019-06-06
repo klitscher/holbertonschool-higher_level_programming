@@ -1,2 +1,8 @@
 #!/usr/bin/python3
-def append_after(filename="", search_string="", new_string=""):
+"""Module to get dictionary description"""
+
+
+def class_to_json(obj):
+    """Function to get dictionary description"""
+
+    return obj.__dict__
