@@ -8,10 +8,17 @@ from models.base import Base
 class TestBaseClass(unittest.TestCase):
     """Tests for Base class"""
 
+    def test_idCount(self):
+        """Test that the id counter works"""
+        b1 = Base()
+        b2 = Base()
+        b3 = Base()
+        self.assertEqual(b3.id, 3)
+
     def test_noArgs(self):
         """Test no argumetns"""
         b1 = Base()
-        self.assertEqual(b1.id, 1)
+        self.assertEqual(b1.id, 4)
 
     def test_multiArgs(self):
         """Test multiple arguments"""
