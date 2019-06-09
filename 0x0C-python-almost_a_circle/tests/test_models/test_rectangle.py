@@ -163,8 +163,8 @@ class TestRectangleClass(unittest.TestCase):
 
     #----------------Tests for area method-------------------------------
 
-    def test_areaInt(self):
-        """Test area with ints"""
+    def test_areaCorrect(self):
+        """Test that area works"""
         r1 = Rectangle(4, 5)
         self.assertEqual(r1.area(), 20)
 
@@ -172,3 +172,10 @@ class TestRectangleClass(unittest.TestCase):
         """Test that area accepts no arguments"""
         r1 = Rectangle(9, 100)
         self.assertRaises(TypeError, r1.area, 6)
+
+    #----------------Tests for display method-------------------------------
+
+    def test_displayArgument(self):
+        """Test that display takes no arguments"""
+        r1 = Rectangle(2, 3)
+        self.assertRaises(TypeError, r1.display, 1)
