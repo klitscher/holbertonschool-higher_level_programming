@@ -157,6 +157,18 @@ class TestRectangleClass(unittest.TestCase):
         """Test y with dicts"""
         self.assertRaises(TypeError, Rectangle, 1, 7, 8, {"key": 1})
 
-    def test_xLessThanZeo(self):
+    def test_yLessThanZeo(self):
         """Test y < 0"""
         self.assertRaises(ValueError, Rectangle, 9, 99, 9, -8)
+
+    #----------------Tests for area method-------------------------------
+
+    def test_areaInt(self):
+        """Test area with ints"""
+        r1 = Rectangle(4, 5)
+        self.assertEqual(r1.area(), 20)
+
+    def test_areaArguments(self):
+        """Test that area accepts no arguments"""
+        r1 = Rectangle(9, 100)
+        self.assertRaises(TypeError, r1.area, 6)
