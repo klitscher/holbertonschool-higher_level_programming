@@ -40,8 +40,6 @@ class TestRectangleClass(unittest.TestCase):
         """Test if there are too many arguments"""
         self.assertRaises(TypeError, Rectangle, 1, 2, 3, 4, 5, 6)
 
-    #----------------Tests for id inheritance---------------------
-
     def test_idNoArgs(self):
         """Test that id works with no arguments"""
         r1 = Rectangle(1, 2)

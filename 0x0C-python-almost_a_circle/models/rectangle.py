@@ -78,7 +78,7 @@ class Rectangle(Base):
 
     def display(self):
         """Return visual display of rectangle"""
-        print('\n' * self.__y)
+        print('\n' * self.__y, end="")
         for row in range(self.__height):
             print(' ' * self.__x, end="")
             print('#' * self.__width)
