@@ -3,6 +3,8 @@
 
 
 import unittest
+#import io
+#import sys
 from models.base import Base
 from models.rectangle import Rectangle
 
@@ -11,7 +13,8 @@ class TestRectangleClass(unittest.TestCase):
     """Tests for Rectangle class"""
 
 
-    #----------------Tests general------------
+    #----------------Tests general----------------------------
+
     def test_Int(self):
         """Test with int"""
         r1 = Rectangle(5, 899)
@@ -179,7 +182,130 @@ class TestRectangleClass(unittest.TestCase):
         """Test that display takes no arguments"""
         r1 = Rectangle(2, 3)
         self.assertRaises(TypeError, r1.display, 1)
-
+        """
+    def test_displayCorrect(self):
+        Test that checks it printed correctly
+        r1 = Rectangle(2, 2)
+        f = io.StringIO()
+        with redirect_stdout(f):
+            r1.display()
+        s = f.getvalue()
+        self.assertEqual(s, "##\n##\n")
+        """
     #----------------Tests for __str__ method-------------------------------
 
     # Not sure how this would fail/test for it
+
+    #----------------Tests for update method-------------------------------
+
+    def test_update1Args(self):
+        """Test correct output"""
+        r1 = Rectangle(10, 10, 10, 10)
+        r1.update(89)
+        self.assertEqual(r1.id, 89)
+
+    def test_update2Args(self):
+        """Test two args"""
+        r1 = Rectangle(10, 10, 10, 10)
+        r1.update(89, 72)
+        li = [r1.id, r1.width]
+        self.assertListEqual(li, [89, 72])
+
+    def test_update3Args(self):
+        """Test three args"""
+        r1 = Rectangle(10, 10, 10, 10)
+        r1.update(89, 72, 9)
+        li = [r1.id, r1.width, r1.height]
+        self.assertListEqual(li, [89, 72, 9])
+
+    def test_update4Args(self):
+        """Test four args"""
+        r1 = Rectangle(10, 10, 10, 10)
+        r1.update(89, 72, 9, 44)
+        li = [r1.id, r1.width, r1.height, r1.x]
+        self.assertListEqual(li, [89, 72, 9, 44])
+
+    def test_update5Args(self):
+        """Test five args"""
+        r1 = Rectangle(10, 10, 10, 10)
+        r1.update(89, 72, 9, 64, 7)
+        li = [r1.id, r1.width, r1.height, r1.x, r1.y]
+        self.assertListEqual(li, [89, 72, 9, 64, 7])
+
+    def test_update6Args(self):
+        """Test six args"""
+        r1 = Rectangle(10, 10, 10, 10)
+        r1.update(89, 72, 9, 64, 7, 9)
+        li = [r1.id, r1.width, r1.height, r1.x, r1.y]
+        self.assertListEqual(li, [89, 72, 9, 64, 7])
+
+
+    def test_updateEmpty(self):
+        """Test no argument to update"""
+        r1 = Rectangle(2, 4)
+        r1.update()
+        li = [r1.id, r1.width, r1.height, r1.x, r1.y]
+        self.assertListEqual(li, [r1.id, 2, 4, 0, 0])
+
+    def test_updateStr(self):
+        """Test with string in each spot but id"""
+        r1 = Rectangle(2, 4)
+        good = [r1.id, 1, 2, 3, 4]
+        for i in range(1, len(good)):
+            bad = good.copy()
+            bad[i] = 'Hello'
+            self.assertRaises(TypeError, r1.update, *bad)
+
+    def test_updateFloat(self):
+        """Test with float in each spot but id"""
+        r1 = Rectangle(2, 4)
+        good = [r1.id, 1, 2, 3, 4]
+        for i in range(1, len(good)):
+            bad = good.copy()
+            bad[i] = 3.8
+            self.assertRaises(TypeError, r1.update, *bad)
+
+    def test_updateList(self):
+        """Test with list in each spot but id"""
+        r1 = Rectangle(2, 4)
+        good = [r1.id, 1, 2, 3, 4]
+        for i in range(1, len(good)):
+            bad = good.copy()
+            bad[i] = [3, 5, 8]
+            self.assertRaises(TypeError, r1.update, *bad)
+
+    def test_updateList(self):
+        """Test with tuple in each spot but id"""
+        r1 = Rectangle(2, 4)
+        good = [r1.id, 1, 2, 3, 4]
+        for i in range(1, len(good)):
+            bad = good.copy()
+            bad[i] = (3, 5, 8)
+            self.assertRaises(TypeError, r1.update, *bad)
+
+    def test_updateList(self):
+        """Test with dict in each spot but id"""
+        r1 = Rectangle(2, 4)
+        good = [r1.id, 1, 2, 3, 4]
+        for i in range(1, len(good)):
+            bad = good.copy()
+            bad[i] = {"Key": 1, "Key2": 'Hello'}
+            self.assertRaises(TypeError, r1.update, *bad)
+
+    def test_updateNegatives(self):
+        """Test with negatives in each spot but id"""
+        r1 = Rectangle(2, 4)
+        good = [r1.id, 1, 2, 3, 4]
+        for i in range(1, len(good)):
+            bad = good.copy()
+            bad[i] = -8
+            self.assertRaises(ValueError, r1.update, *bad)
+
+    def test_update0(self):
+        """Test width and height with zero"""
+        r1 = Rectangle(2, 4)
+        good = [r1.id, 1, 2, 3, 4]
+        for i in range(1, 3):
+            bad = good.copy()
+            bad[i] = 0
+            self.assertRaises(ValueError, r1.update, *bad)

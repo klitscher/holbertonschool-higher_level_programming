@@ -63,7 +63,7 @@ class Rectangle(Base):
         """Getter for y"""
         return self.__y
 
-    @x.setter
+    @y.setter
     def y(self, value):
         """Setter for y"""
         if type(value) is not int:
@@ -89,3 +89,19 @@ class Rectangle(Base):
                                                 self.id, self.__x,
                                                 self.__y, self.__width,
                                                 self.__height)
+
+    def update(self, *args):
+        """Updates the instance attributes"""
+        i = 0
+        for arg in args:
+            i += 1
+            if i == 1:
+                self.id = arg
+            if i == 2:
+                self.width = arg
+            if i == 3:
+                self.height = arg
+            if i == 4:
+                self.x = arg
+            if i == 5:
+                self.y = arg
