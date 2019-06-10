@@ -196,7 +196,7 @@ class TestRectangleClass(unittest.TestCase):
 
     # Not sure how this would fail/test for it
 
-    #----------------Tests for update method-------------------------------
+    #----------------Tests for update method: args--------------------------
 
     def test_update1Args(self):
         """Test correct output"""
@@ -309,3 +309,73 @@ class TestRectangleClass(unittest.TestCase):
             bad = good.copy()
             bad[i] = 0
             self.assertRaises(ValueError, r1.update, *bad)
+
+    #----------------Tests for update method: kwargs--------------------------
+
+    def test_updateKwargWithArgs(self):
+        """Test kwargs with args"""
+        r1 = Rectangle(3, 4)
+        r1.update(4, x=88)
+        li = [r1.id, r1.width, r1.height, r1.x, r1.y]
+        self.assertListEqual(li, [4, 3, 4, 0, 0])
+
+    def test_updateKwargsNotAttr(self):
+        """Test arg not an attribute"""
+        r1 = Rectangle(3, 4)
+        r1.update(bad=88)
+        li = [r1.id, r1.width, r1.height, r1.x, r1.y]
+        self.assertListEqual(li, [r1.id, 3, 4, 0, 0])
+
+    def test_updateKwargString(self):
+        """Test kwarg with strings"""
+        r1 = Rectangle(3, 4)
+        self.assertRaises(TypeError, r1.update, width='Hello')
+        self.assertRaises(TypeError, r1.update, height='Hello')
+        self.assertRaises(TypeError, r1.update, x='Hello')
+        self.assertRaises(TypeError, r1.update, y='Hello')
+
+    def test_updateKwargFloat(self):
+        """Test kwarg with floats"""
+        r1 = Rectangle(3, 4)
+        self.assertRaises(TypeError, r1.update, width=3.4)
+        self.assertRaises(TypeError, r1.update, height=3.4)
+        self.assertRaises(TypeError, r1.update, x=3.4)
+        self.assertRaises(TypeError, r1.update, y=3.4)
+
+    def test_updateKwargList(self):
+        """Test kwarg with lists"""
+        r1 = Rectangle(3, 4)
+        self.assertRaises(TypeError, r1.update, width=[1, 2 , 3])
+        self.assertRaises(TypeError, r1.update, height=[1, 2 , 3])
+        self.assertRaises(TypeError, r1.update, x=[1, 2 , 3])
+        self.assertRaises(TypeError, r1.update, y=[1, 2 , 3])
+
+    def test_updateKwargTuples(self):
+        """Test kwarg with tuples"""
+        r1 = Rectangle(3, 4)
+        self.assertRaises(TypeError, r1.update, width=(1, ))
+        self.assertRaises(TypeError, r1.update, height=(1, ))
+        self.assertRaises(TypeError, r1.update, x=(1, ))
+        self.assertRaises(TypeError, r1.update, y=(1, ))
+
+    def test_updateKwargDict(self):
+        """Test kwarg with Dicts"""
+        r1 = Rectangle(3, 4)
+        self.assertRaises(TypeError, r1.update, width={"Key": 1, "Key2": 'hello'})
+        self.assertRaises(TypeError, r1.update, height={"Key": 1, "Key2": 'hello'})
+        self.assertRaises(TypeError, r1.update, x={"Key": 1, "Key2": 'hello'})
+        self.assertRaises(TypeError, r1.update, y={"Key": 1, "Key2": 'hello'})
+
+    def test_updateKwarg0(self):
+        """Test kwarg with 0"""
+        r1 = Rectangle(3, 4)
+        self.assertRaises(ValueError, r1.update, width=0)
+        self.assertRaises(ValueError, r1.update, height=0)
+
+    def test_updateKwargTuples(self):
+        """Test kwarg with negatives"""
+        r1 = Rectangle(3, 4)
+        self.assertRaises(ValueError, r1.update, width=-8)
+        self.assertRaises(ValueError, r1.update, height=-8)
+        self.assertRaises(ValueError, r1.update, x=-8)
+        self.assertRaises(ValueError, r1.update, y=-8)
