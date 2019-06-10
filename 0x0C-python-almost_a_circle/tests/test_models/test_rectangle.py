@@ -179,3 +179,7 @@ class TestRectangleClass(unittest.TestCase):
         """Test that display takes no arguments"""
         r1 = Rectangle(2, 3)
         self.assertRaises(TypeError, r1.display, 1)
+
+    #----------------Tests for __str__ method-------------------------------
+
+    # Not sure how this would fail/test for it
