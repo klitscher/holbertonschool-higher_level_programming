@@ -377,3 +377,19 @@ class TestRectangleClass(unittest.TestCase):
         self.assertRaises(ValueError, r1.update, height=-8)
         self.assertRaises(ValueError, r1.update, x=-8)
         self.assertRaises(ValueError, r1.update, y=-8)
+
+    #----------------Tests for to_dictionary method-------------------------
+
+    def test_toDictCorrect(self):
+        """Test correct output"""
+        r1 = Rectangle(10, 2, 1, 9)
+        l1 = [r1.id, r1.width, r1.height, r1.x, r1.y]
+        r1_dictionary = r1.to_dictionary()
+        r2 = Rectangle(1, 1)
+        r2.update(**r1_dictionary)
+        l2 = [r2.id, r2.width, r2.height, r2.x, r2.y]
+        self.assertListEqual(l1, l2)
+
+    def test_toDictArguments(self):
+        r1 = Rectangle(2, 3)
+        self.assertRaises(TypeError, r1.to_dictionary, 1)
