@@ -233,3 +233,19 @@ class TestSquareClass(unittest.TestCase):
         self.assertRaises(ValueError, s1.update, size=-8)
         self.assertRaises(ValueError, s1.update, x=-8)
         self.assertRaises(ValueError, s1.update, y=-8)
+
+    #----------------Tests for to_dictionary method-------------------------
+
+    def test_toDictCorrect(self):
+        """Test correct output"""
+        s1 = Square(2, 1, 9)
+        l1 = [s1.id, s1.size, s1.x, s1.y]
+        s1_dictionary = s1.to_dictionary()
+        s2 = Square(1)
+        s2.update(**s1_dictionary)
+        l2 = [s2.id, s2.size, s2.x, s2.y]
+        self.assertListEqual(l1, l2)
+
+    def test_toDictArguments(self):
+        s1 = Square(3)
+        self.assertRaises(TypeError, s1.to_dictionary, 1)
