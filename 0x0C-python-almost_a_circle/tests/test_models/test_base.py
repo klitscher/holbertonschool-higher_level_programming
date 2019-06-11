@@ -81,3 +81,7 @@ class TestBaseClass(unittest.TestCase):
         r1 = Rectangle(10, 7, 2, 8)
         di = r1.to_dictionary()
         self.assertRaises(TypeError, Base.to_json_string, [di], 1)
+
+    #----------------Tests save_to_file----------------------------
+
+    Still need to be created
