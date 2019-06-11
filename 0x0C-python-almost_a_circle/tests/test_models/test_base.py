@@ -4,9 +4,12 @@
 
 import unittest
 from models.base import Base
+from models.rectangle import Rectangle
 
 class TestBaseClass(unittest.TestCase):
     """Tests for Base class"""
+
+    #----------------Tests general----------------------------
 
     def test_idCount(self):
         """Test that the id counter works"""
@@ -14,6 +17,8 @@ class TestBaseClass(unittest.TestCase):
         b2 = Base()
         b3 = Base()
         self.assertEqual(b3.id, 3)
+
+    #----------------Tests arguments----------------------------
 
     def test_noArgs(self):
         """Test no argumetns"""
@@ -58,3 +63,21 @@ class TestBaseClass(unittest.TestCase):
         """Test dict as arguments"""
         b1 = Base({"Key": 'value', "key2": 3})
         self.assertEqual(b1.id, {"Key": 'value', "key2": 3})
+
+    #----------------Tests to_json_string----------------------------
+
+    def test_toJsonStrWorks(self):
+        """Test that it works"""
+        r1 = Rectangle(10, 7, 2, 8)
+        dictionary = r1.to_dictionary()
+        json_dictionary = Base.to_json_string([dictionary])
+        d1 = {'x': 2, 'width': 10, 'id': r1.id , 'height': 7, 'y': 8}
+        self.assertDictEqual(dictionary, d1)
+        self.assertTrue((type(dictionary) is dict))
+        self.assertTrue((type(json_dictionary) is str))
+
+    def test_toJsonStr2Args(self):
+        """Test with 2 args"""
+        r1 = Rectangle(10, 7, 2, 8)
+        di = r1.to_dictionary()
+        self.assertRaises(TypeError, Base.to_json_string, [di], 1)
