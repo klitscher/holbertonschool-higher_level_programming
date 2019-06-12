@@ -4,6 +4,7 @@
 
 import json
 import os.path
+import turtle
 
 
 class Base:
@@ -77,3 +78,31 @@ class Base:
         for inst in my_dict:
             lis.append(cls.create(**inst))
         return lis
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        """Draw a square with turtle"""
+        window = turtle.Screen()
+        turts = turtle.Turtle()
+        if len(list_rectangles) > 0:
+            for rect in list_rectangles:
+                turts.forward(rect.height)
+                turts.right(90)
+                turts.forward(rect.width)
+                turts.rigth(90)
+                turts.forward(rect.height)
+                turts.right(90)
+                turts.forward(rect.width)
+                turts.right(90)
+        if len(list_squares) > 0:
+            for sq in list_squares:
+                turts.forward(sq.height)
+                turts.right(90)
+                turts.forward(sq.width)
+                turts.rigth(90)
+                turts.forward(sq.height)
+                turts.right(90)
+                turts.forward(sq.width)
+                turts.right(90)
+
+        window.exitonclick()
