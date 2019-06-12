@@ -3,7 +3,8 @@
 
 
 import unittest
-from unittest import mock
+import io
+from contextlib import redirect_stdout
 from models.base import Base
 from models.rectangle import Rectangle
 
@@ -176,4 +177,28 @@ class TestBaseClass(unittest.TestCase):
 
     #----------------Tests load_from_file--------------------------------------
 
-    # Need actual tests!
+    def test_loadFromFileTooManyArgs(self):
+        """Test too many args"""
+        r1 = Rectangle(10, 7, 2, 8)
+        r2 = Rectangle(2, 4)
+        list_rectangles_input = [r1, r2]
+        Rectangle.save_to_file(list_rectangles_input)
+        self.assertRaises(TypeError, Rectangle.load_from_file, 1)
+    """
+    def test_loadFromFileCorrect(self):
+        Test correct output
+        f = io.StringIO()
+        r1 = Rectangle(10, 7, 2, 8)
+        r2 = Rectangle(2, 4)
+        s1 = "[{}] {}".format(id(r1), r1)
+        s2 = "[{}] {}".format(id(r2), r2)
+        list_rectangles_input = [r1, r2]
+        Rectangle.save_to_file(list_rectangles_input)
+        list_rectangles_output = Rectangle.load_from_file()
+
+        for rect in list_rectangles_input:
+            with redirect_stdout(f):
+                print("[{}] {}".format(id(rect), rect))
+        self.assertEqual(f.getvalue(), 1)
+        # Need actual tests!
+    """

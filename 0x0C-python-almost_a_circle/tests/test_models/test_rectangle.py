@@ -3,8 +3,8 @@
 
 
 import unittest
-#import io
-#import sys
+import io
+from contextlib import redirect_stdout
 from models.base import Base
 from models.rectangle import Rectangle
 
@@ -180,19 +180,27 @@ class TestRectangleClass(unittest.TestCase):
         """Test that display takes no arguments"""
         r1 = Rectangle(2, 3)
         self.assertRaises(TypeError, r1.display, 1)
-        """
+
     def test_displayCorrect(self):
-        Test that checks it printed correctly
-        r1 = Rectangle(2, 2)
+        """Test that checks it printed correctly"""
+        r1 = Rectangle(2, 2, 1, 1)
         f = io.StringIO()
         with redirect_stdout(f):
             r1.display()
-        s = f.getvalue()
-        self.assertEqual(s, "##\n##\n")
-        """
+        self.assertEqual(f.getvalue(), "\n ##\n ##\n")
+
     #----------------Tests for __str__ method-------------------------------
 
-    # Not sure how this would fail/test for it
+    def test_strCorrect(self):
+        """Test correct output"""
+        f = io.StringIO()
+        r1 = Rectangle(4, 6, 2, 1, 12)
+        s1 = "[Rectangle] ({}) {}/{} - {}/{}\n".format(r1.id, r1.x, r1.y,
+                                              r1.width, r1.height)
+        with redirect_stdout(f):
+            print(r1)
+        self.assertEqual(f.getvalue(), s1)
+        # Not sure how this would fail/test for it
 
     #----------------Tests for update method: args--------------------------
 
