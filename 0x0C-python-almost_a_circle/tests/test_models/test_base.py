@@ -107,7 +107,17 @@ class TestBaseClass(unittest.TestCase):
 
     #----------------Tests save_to_file----------------------------
 
-    #Need Tests for this
+    def test_saveToFileTooManyArgs(self):
+        """Test too many args"""
+        r1 = Rectangle(10, 7, 2, 8)
+        r2 = Rectangle(2, 4)
+        self.assertRaises(TypeError, Rectangle.save_to_file, 1, 1)
+
+        def test_saveToFileTooManyArgs(self):
+        """Test too many args"""
+        r1 = Rectangle(10, 7, 2, 8)
+        r2 = Rectangle(2, 4)
+        self.assertRaises(TypeError, Rectangle.save_to_file, 1)
 
     #----------------Tests from_json_string----------------------------
 
