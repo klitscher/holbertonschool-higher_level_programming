@@ -74,8 +74,28 @@ class TestBaseClass(unittest.TestCase):
         json_dictionary = Base.to_json_string([dictionary])
         d1 = {'x': 2, 'width': 10, 'id': r1.id , 'height': 7, 'y': 8}
         self.assertDictEqual(dictionary, d1)
-        self.assertTrue((type(dictionary) is dict))
+
+    def test_toJsonStrStr(self):
+        """Test returns str"""
+        r1 = Rectangle(10, 7, 2, 8)
+        dictionary = r1.to_dictionary()
+        json_dictionary = Base.to_json_string([dictionary])
+        d1 = {'x': 2, 'width': 10, 'id': r1.id , 'height': 7, 'y': 8}
         self.assertTrue((type(json_dictionary) is str))
+
+    def test_toJsonStrNone(self):
+        """Test None """
+        r1 = Rectangle(10, 7, 2, 8)
+        dictionary = r1.to_dictionary()
+        json_dictionary = Base.to_json_string(None)
+        self.assertEqual(json_dictionary, "[]")
+
+    def test_toJsonStrEmpty(self):
+        """Test empty list"""
+        r1 = Rectangle(10, 7, 2, 8)
+        dictionary = r1.to_dictionary()
+        json_dictionary = Base.to_json_string([])
+        self.assertEqual(json_dictionary, "[]")
 
     def test_toJsonStr2Args(self):
         """Test with 2 args"""
@@ -102,6 +122,16 @@ class TestBaseClass(unittest.TestCase):
         json_list_input = None
         list_output = Rectangle.from_json_string(json_list_input)
         self.assertEqual(li, list_output)
+
+    def test_fromJsonStringIsList(self):
+        """Tests that returns a list"""
+        list_input = [
+        {'id': 89, 'width': 10, 'height': 4},
+        {'id': 7, 'width': 1, 'height': 7}
+        ]
+        json_list_input = Rectangle.to_json_string(list_input)
+        list_output = Rectangle.from_json_string(json_list_input)
+        self.assertTrue(type(list_output) is list)
 
     def test_fromJsonStringNoArgs(self):
         """Test no arguments"""

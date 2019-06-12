@@ -393,3 +393,9 @@ class TestRectangleClass(unittest.TestCase):
     def test_toDictArguments(self):
         r1 = Rectangle(2, 3)
         self.assertRaises(TypeError, r1.to_dictionary, 1)
+
+    def test_toDictIsDict(self):
+        """Test that to_dictionary is dict"""
+        r1 = Rectangle(10, 7, 2, 8)
+        dictionary = r1.to_dictionary()
+        self.assertTrue((type(dictionary) is dict))
