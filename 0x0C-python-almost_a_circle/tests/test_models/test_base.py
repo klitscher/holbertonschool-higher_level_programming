@@ -17,14 +17,15 @@ class TestBaseClass(unittest.TestCase):
         b1 = Base()
         b2 = Base()
         b3 = Base()
-        self.assertEqual(b3.id, 3)
+        self.assertEqual(b3.id, b2.id + 1)
 
     #----------------Tests arguments----------------------------
 
     def test_noArgs(self):
         """Test no argumetns"""
         b1 = Base()
-        self.assertEqual(b1.id, 4)
+        b2 = Base()
+        self.assertEqual(b1.id + 1, b2.id)
 
     def test_multiArgs(self):
         """Test multiple arguments"""
@@ -146,3 +147,27 @@ class TestBaseClass(unittest.TestCase):
         self.assertRaises(TypeError, Rectangle.from_json_string, 1, 2)
 
     #Need more Tests for this?
+
+    #----------------Tests create--------------------------------------
+
+    def test_createCorrect(self):
+        """Tests that create works"""
+        r1 = Rectangle(3, 5, 1)
+        r1_dict = r1.to_dictionary()
+        r2 = Rectangle.create(**r1_dict)
+        l1 = [r1.id, r1.width, r1.height, r1.x, r1.y]
+        l2 = [r2.id, r2.width, r2.height, r2.x, r2.y]
+        self.assertEqual(l1, l2)
+
+    def test_create0Args(self):
+        """Tests 0 args"""
+        r1 = Rectangle.create()
+        l1 = [r1.id, r1.width, r1.height, r1.x, r1.y]
+        l2 = [r1.id, 1, 2, 3, 4] # dummy values from source code
+        self.assertEqual(l1, l2)
+
+    def test_createTooManyArgs(self):
+        """Tests too many args"""
+        r1 = Rectangle(3, 5, 1)
+        r1_dict = r1.to_dictionary()
+        self.assertRaises(TypeError, Rectangle.create, 1, **r1_dict)

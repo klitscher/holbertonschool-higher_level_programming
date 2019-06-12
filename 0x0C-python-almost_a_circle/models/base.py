@@ -50,3 +50,10 @@ class Base:
         if json_string is None or json_string == "":
             return lis
         return json.loads(json_string)
+
+    @classmethod
+    def create(cls, **dictionary):
+        """Returns an instance with all attributes already set"""
+        dummy = cls(1, 2, 3, 4)
+        dummy.update(**dictionary)
+        return dummy
