@@ -3,6 +3,7 @@
 
 
 import unittest
+from unittest import mock
 from models.base import Base
 from models.rectangle import Rectangle
 
@@ -84,4 +85,34 @@ class TestBaseClass(unittest.TestCase):
 
     #----------------Tests save_to_file----------------------------
 
-    Still need to be created
+    #Need Tests for this
+
+    #----------------Tests from_json_string----------------------------
+
+    def test_fromJsonStringEmpty(self):
+        """Test empty input"""
+        li = []
+        json_list_input = ""
+        list_output = Rectangle.from_json_string(json_list_input)
+        self.assertEqual(li, list_output)
+
+    def test_fromJsonStringNone(self):
+        """Test None input"""
+        li = []
+        json_list_input = None
+        list_output = Rectangle.from_json_string(json_list_input)
+        self.assertEqual(li, list_output)
+
+    def test_fromJsonStringNoArgs(self):
+        """Test no arguments"""
+        li = []
+        json_list_input = None
+        self.assertRaises(TypeError, Rectangle.from_json_string)
+
+    def test_fromJsonStringTooManyArgs(self):
+        """Test too many arguments"""
+        li = []
+        json_list_input = None
+        self.assertRaises(TypeError, Rectangle.from_json_string, 1, 2)
+
+    #Need more Tests for this?

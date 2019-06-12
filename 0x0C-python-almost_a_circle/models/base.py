@@ -39,3 +39,11 @@ class Base:
             with open(cls.__name__ + ".json", encoding="utf-8",
                       mode="a+") as myFile:
                 myFile.write(js_dic)
+
+    @staticmethod
+    def from_json_string(json_string):
+        """Convert json string to list of dicts"""
+        lis = []
+        if json_string is None or json_string == "":
+            return lis
+        return json.loads(json_string)
