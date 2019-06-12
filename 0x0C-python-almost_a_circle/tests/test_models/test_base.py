@@ -163,7 +163,7 @@ class TestBaseClass(unittest.TestCase):
         """Tests 0 args"""
         r1 = Rectangle.create()
         l1 = [r1.id, r1.width, r1.height, r1.x, r1.y]
-        l2 = [r1.id, 1, 2, 3, 4] # dummy values from source code
+        l2 = [r1.id, 1, 2, 0, 0] # dummy values from source code
         self.assertEqual(l1, l2)
 
     def test_createTooManyArgs(self):
