@@ -171,3 +171,9 @@ class TestBaseClass(unittest.TestCase):
         r1 = Rectangle(3, 5, 1)
         r1_dict = r1.to_dictionary()
         self.assertRaises(TypeError, Rectangle.create, 1, **r1_dict)
+
+        # Need more tests?
+
+    #----------------Tests load_from_file--------------------------------------
+
+    # Need actual tests!
