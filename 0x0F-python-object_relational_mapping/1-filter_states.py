@@ -2,7 +2,9 @@
 """Script to filter states"""
 
 
-if __name__ == '__main__':
+def main():
+    """Main function"""
+
     from sys import argv
     import MySQLdb
 
@@ -22,3 +24,6 @@ if __name__ == '__main__':
         print(row)
     cur.close()
     database.close()
+
+if __name__ == '__main__':
+    main()
