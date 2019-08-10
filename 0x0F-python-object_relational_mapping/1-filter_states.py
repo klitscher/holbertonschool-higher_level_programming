@@ -2,11 +2,12 @@
 """Script to filter states"""
 
 
+from sys import argv
+import MySQLdb
+
+
 def main():
     """Main function"""
-
-    from sys import argv
-    import MySQLdb
 
     username = argv[1]
     password = argv[2]
