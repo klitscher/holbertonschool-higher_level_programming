@@ -10,6 +10,7 @@ def find_peak(list_of_integers):
     result = get_peak(list_of_integers, 0, length - 1, length)
     return (result)
 
+
 def get_peak(int_list, low, high, n):
     """Work function for peak"""
     mid = int(low + (high - low)/2)
