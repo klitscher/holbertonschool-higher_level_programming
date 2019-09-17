@@ -10,7 +10,6 @@ if (process.argv[2] === undefined) {
     array.push(parseInt(process.argv[i - 1]));
   }
   array.sort((left, right) => left - right);
-  console.log(array);
   const secondBiggest = len - 4;
   console.log(array[secondBiggest]);
 }
