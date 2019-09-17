@@ -9,7 +9,8 @@ if (process.argv[2] === undefined) {
   for (let i = len; i > 2; i--) {
     array.push(parseInt(process.argv[i - 1]));
   }
-  array.sort();
+  array.sort((left, right) => left - right);
+  console.log(array);
   const secondBiggest = len - 4;
   console.log(array[secondBiggest]);
 }
