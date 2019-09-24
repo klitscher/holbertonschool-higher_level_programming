@@ -1,8 +1,16 @@
 #!/usr/bin/node
 const request = require('request');
-let url = process.argv[2];
-url = 'http://swapi.co/api/people/18';
+const url = process.argv[2];
 request(url, function (error, response, body) {
   if (error) { return; }
-  console.log(JSON.parse(body).films.length);
+  let count = 0;
+  const results = JSON.parse(body).results;
+  for (const films of results) {
+    for (const chara of films.characters) {
+      if (chara === 'https://swapi.co/api/people/18/') {
+        count++;
+      }
+    }
+  }
+  console.log(count);
 });
