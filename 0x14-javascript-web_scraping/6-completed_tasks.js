@@ -8,7 +8,9 @@ request(process.argv[2], function (error, response, body) {
   const list = JSON.parse(body);
   for (let i = 0; i < list.length; i++) {
     if (!(list[i].userId in idList)) {
-      idList.push(list[i].userId);
+      if (list[i].completed === true) {
+        idList.push(list[i].userId);
+      }
     }
   }
   idSet = [...new Set(idList)];
