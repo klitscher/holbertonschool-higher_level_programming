@@ -4,7 +4,7 @@ const idList = [];
 let idSet;
 const newObj = {};
 request(process.argv[2], function (error, response, body) {
-  if (error) {}
+  if (error) { return; }
   const list = JSON.parse(body);
   for (let i = 0; i < list.length; i++) {
     if (!(list[i].userId in idList)) {
