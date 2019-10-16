@@ -1,1 +1,1 @@
-Direcory for all higher level programing work.
+Repo for all high level programing sections.
